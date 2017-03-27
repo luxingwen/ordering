@@ -1,0 +1,427 @@
+swagger: "2.0"
+info:
+  title: beego Test API
+  description: beego has a very cool tools to autogenerate documents for your API
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /menu/:
+    get:
+      tags:
+      - menu
+      description: get Menu
+      operationId: MenuController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Menu'
+        "403": {}
+    post:
+      tags:
+      - menu
+      description: create Menu
+      operationId: MenuController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Menu content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Menu'
+      responses:
+        "201":
+          description: '{int} models.Menu'
+        "403":
+          description: body is empty
+  /menu/{id}:
+    get:
+      tags:
+      - menu
+      description: get Menu by id
+      operationId: MenuController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Menu'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - menu
+      description: update the Menu
+      operationId: MenuController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Menu content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Menu'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Menu'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - menu
+      description: delete the Menu
+      operationId: MenuController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /order/:
+    get:
+      tags:
+      - order
+      description: get Order
+      operationId: OrderController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Order'
+        "403": {}
+    post:
+      tags:
+      - order
+      description: create Order
+      operationId: OrderController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Order content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Order'
+      responses:
+        "201":
+          description: '{int} models.Order'
+        "403":
+          description: body is empty
+  /order/{id}:
+    get:
+      tags:
+      - order
+      description: get Order by id
+      operationId: OrderController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Order'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - order
+      description: update the Order
+      operationId: OrderController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Order content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Order'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Order'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - order
+      description: delete the Order
+      operationId: OrderController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /user/:
+    get:
+      tags:
+      - user
+      description: get User
+      operationId: UserController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.User'
+        "403": {}
+    post:
+      tags:
+      - user
+      description: create User
+      operationId: UserController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for User content
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      responses:
+        "201":
+          description: '{int} models.User'
+        "403":
+          description: body is empty
+  /user/{id}:
+    get:
+      tags:
+      - user
+      description: get User by id
+      operationId: UserController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.User'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - user
+      description: update the User
+      operationId: UserController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for User content
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.User'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - user
+      description: delete the User
+      operationId: UserController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+definitions:
+  models.Menu:
+    title: Menu
+    type: object
+    properties:
+      Id:
+        type: integer
+        format: int64
+      Name:
+        type: string
+      Number:
+        type: integer
+        format: int64
+      Price:
+        type: number
+        format: double
+      Types:
+        type: integer
+        format: int64
+  models.Order:
+    title: Order
+    type: object
+    properties:
+      Amount:
+        type: number
+        format: double
+      Discount:
+        type: number
+        format: double
+      Id:
+        type: integer
+        format: int64
+      IsPay:
+        type: boolean
+      MenuDetail:
+        type: string
+      OrderId:
+        type: string
+      People:
+        type: integer
+        format: int64
+      Remarks:
+        type: string
+      TableNum:
+        type: string
+  models.User:
+    title: User
+    type: object
+    properties:
+      Address:
+        type: string
+      AuthData:
+        type: string
+      City:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      NickName:
+        type: string
+      Password:
+        type: string
+      Phone:
+        type: string
+      Pic:
+        type: string
+      Sex:
+        type: integer
+        format: int64
+      Username:
+        type: string
+tags:
+- name: user
+  description: |2
+     UserController oprations for User
+- name: order
+  description: |2
+     OrderController oprations for Order
+- name: menu
+  description: |2
+     MenuController oprations for Menu
