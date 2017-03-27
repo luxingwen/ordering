@@ -525,22 +525,22 @@
             "title": "Menu",
             "type": "object",
             "properties": {
-                "Id": {
+                "id": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Name": {
+                "name": {
                     "type": "string"
                 },
-                "Number": {
+                "number": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Price": {
+                "price": {
                     "type": "number",
                     "format": "double"
                 },
-                "Types": {
+                "types": {
                     "type": "integer",
                     "format": "int64"
                 }
@@ -550,35 +550,35 @@
             "title": "Order",
             "type": "object",
             "properties": {
-                "Amount": {
+                "TableNum": {
+                    "type": "string"
+                },
+                "amount": {
                     "type": "number",
                     "format": "double"
                 },
-                "Discount": {
+                "discount": {
                     "type": "number",
                     "format": "double"
                 },
-                "Id": {
+                "id": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "IsPay": {
+                "isPay": {
                     "type": "boolean"
                 },
-                "MenuDetail": {
+                "menuDetail": {
                     "type": "string"
                 },
-                "OrderId": {
+                "orderId": {
                     "type": "string"
                 },
-                "People": {
+                "people": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Remarks": {
-                    "type": "string"
-                },
-                "TableNum": {
+                "remarks": {
                     "type": "string"
                 }
             }
@@ -587,36 +587,36 @@
             "title": "User",
             "type": "object",
             "properties": {
-                "Address": {
+                "address": {
                     "type": "string"
                 },
-                "AuthData": {
+                "authData": {
                     "type": "string"
                 },
-                "City": {
+                "city": {
                     "type": "string"
                 },
-                "Id": {
+                "id": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "NickName": {
+                "nickName": {
                     "type": "string"
                 },
-                "Password": {
+                "password": {
                     "type": "string"
                 },
-                "Phone": {
+                "phone": {
                     "type": "string"
                 },
-                "Pic": {
+                "pic": {
                     "type": "string"
                 },
-                "Sex": {
+                "sex": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Username": {
+                "username": {
                     "type": "string"
                 }
             }

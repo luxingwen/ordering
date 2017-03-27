@@ -5,21 +5,24 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type User struct {
-	Id       int64
-	Username string `orm:"size(128)"`
-	Password string `orm:"size(128)"`
-	Phone    string `orm:"size(128)"`
-	Sex      int
-	Pic      string `orm:"size(128)"`
-	Address  string `orm:"size(128)"`
-	City     string `orm:"size(128)"`
-	NickName string `orm:"size(128)"`
-	AuthData string `orm:"size(128)"`
+	Id       int64     `json:"id" orm:"auto"`
+	Username string    `json:"username" orm:"size(128)"`
+	Password string    `json:"password" orm:"size(128)"`
+	Phone    string    `json:"phone" orm:"size(128)"`
+	Sex      int       `json:"sex"`
+	Pic      string    `json:"pic" orm:"size(128)"`
+	Address  string    `json:"address" orm:"size(128)"`
+	City     string    `json:"city" orm:"size(128)"`
+	NickName string    `json:"nickName" orm:"size(128)"`
+	AuthData string    `json:"authData" orm:"size(128)"`
+	Created  time.Time `json:"created" orm:"auto_now_add;type(datetime)"`
+	Updated  time.Time `json:"updated" orm:"auto_now;type(datetime)"`
 }
 
 func init() {

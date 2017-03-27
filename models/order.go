@@ -5,20 +5,23 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type Order struct {
-	Id         int64  `orm:"auto"`
-	OrderId    string `orm:"size(128)"`
-	TableNum   string `orm:"size(128)"`
-	People     int
-	Remarks    string `orm:"size(128)"`
-	MenuDetail string `orm:"size(128)"`
-	IsPay      bool
-	Amount     float64
-	Discount   float64
+	Id         int64     `json:"id" orm:"auto"`
+	OrderId    string    `json:"orderId" orm:"size(128)"`
+	TableNum   string    `orm:"size(128)"`
+	People     int       `json:"people"`
+	Remarks    string    `json:"remarks" orm:"size(128)"`
+	MenuDetail string    `json:"menuDetail" orm:"size(128)"`
+	IsPay      bool      `json:"isPay"`
+	Amount     float64   `json:"amount"`
+	Discount   float64   `json:"discount"`
+	Created    time.Time `json:"created" orm:"auto_now_add;type(datetime)"`
+	Updated    time.Time `json:"updated" orm:"auto_now;type(datetime)"`
 }
 
 func init() {
