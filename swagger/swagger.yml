@@ -462,8 +462,6 @@ definitions:
     title: Category
     type: object
     properties:
-      Name:
-        type: string
       created:
         $ref: '#/definitions/time.Time'
       fatherId:
@@ -472,6 +470,8 @@ definitions:
       id:
         type: integer
         format: int64
+      name:
+        type: string
       updated:
         $ref: '#/definitions/time.Time'
   models.Menu:

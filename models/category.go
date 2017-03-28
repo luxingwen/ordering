@@ -12,7 +12,7 @@ import (
 
 type Category struct {
 	Id       int64     `json:"id" orm:"auto"`
-	Name     string    `orm:"size(128)"`
+	Name     string    `json:"name" orm:"size(128)"`
 	FatherId int64     `json:"fatherId"`
 	Created  time.Time `json:"created" orm:"auto_now_add;type(datetime)"`
 	Updated  time.Time `json:"updated" orm:"auto_now;type(datetime)"`
