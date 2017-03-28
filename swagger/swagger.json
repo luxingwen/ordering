@@ -15,6 +15,174 @@
     },
     "basePath": "/v1",
     "paths": {
+        "/category/": {
+            "get": {
+                "tags": [
+                    "category"
+                ],
+                "description": "get Category",
+                "operationId": "CategoryController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "category"
+                ],
+                "description": "create Category",
+                "operationId": "CategoryController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Category content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Category"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/category/{id}": {
+            "get": {
+                "tags": [
+                    "category"
+                ],
+                "description": "get Category by id",
+                "operationId": "CategoryController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "category"
+                ],
+                "description": "update the Category",
+                "operationId": "CategoryController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Category content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "category"
+                ],
+                "description": "delete the Category",
+                "operationId": "CategoryController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
         "/menu/": {
             "get": {
                 "tags": [
@@ -521,10 +689,39 @@
         }
     },
     "definitions": {
+        ".Time": {
+            "type": "object"
+        },
+        "models.Category": {
+            "title": "Category",
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "created": {
+                    "$ref": "#/definitions/time.Time"
+                },
+                "fatherId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "updated": {
+                    "$ref": "#/definitions/time.Time"
+                }
+            }
+        },
         "models.Menu": {
             "title": "Menu",
             "type": "object",
             "properties": {
+                "created": {
+                    "$ref": "#/definitions/time.Time"
+                },
                 "id": {
                     "type": "integer",
                     "format": "int64"
@@ -536,6 +733,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "pic": {
+                    "type": "string"
+                },
                 "price": {
                     "type": "number",
                     "format": "double"
@@ -543,6 +743,9 @@
                 "types": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "updated": {
+                    "$ref": "#/definitions/time.Time"
                 }
             }
         },
@@ -556,6 +759,9 @@
                 "amount": {
                     "type": "number",
                     "format": "double"
+                },
+                "created": {
+                    "$ref": "#/definitions/time.Time"
                 },
                 "discount": {
                     "type": "number",
@@ -580,6 +786,9 @@
                 },
                 "remarks": {
                     "type": "string"
+                },
+                "updated": {
+                    "$ref": "#/definitions/time.Time"
                 }
             }
         },
@@ -595,6 +804,9 @@
                 },
                 "city": {
                     "type": "string"
+                },
+                "created": {
+                    "$ref": "#/definitions/time.Time"
                 },
                 "id": {
                     "type": "integer",
@@ -616,6 +828,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "updated": {
+                    "$ref": "#/definitions/time.Time"
+                },
                 "username": {
                     "type": "string"
                 }
@@ -634,6 +849,10 @@
         {
             "name": "menu",
             "description": " MenuController oprations for Menu\n"
+        },
+        {
+            "name": "category",
+            "description": " CategoryController oprations for Category\n"
         }
     ]
 }

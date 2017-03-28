@@ -10,49 +10,43 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Order struct {
-	Id         int64     `json:"id" orm:"auto"`
-	OrderId    string    `json:"orderId" orm:"size(128)"`
-	TableNum   string    `orm:"size(128)"`
-	People     int       `json:"people"`
-	Remarks    string    `json:"remarks" orm:"size(128)"`
-	MenuDetail string    `json:"menuDetail" orm:"size(4096)"`
-	IsPay      bool      `json:"isPay"`
-	Amount     float64   `json:"amount"`
-	Discount   float64   `json:"discount"`
-	Created    time.Time `json:"created" orm:"auto_now_add;type(datetime)"`
-	Updated    time.Time `json:"updated" orm:"auto_now;type(datetime)"`
+type Category struct {
+	Id       int64     `json:"id" orm:"auto"`
+	Name     string    `orm:"size(128)"`
+	FatherId int64     `json:"fatherId"`
+	Created  time.Time `json:"created" orm:"auto_now_add;type(datetime)"`
+	Updated  time.Time `json:"updated" orm:"auto_now;type(datetime)"`
 }
 
 func init() {
-	orm.RegisterModel(new(Order))
+	orm.RegisterModel(new(Category))
 }
 
-// AddOrder insert a new Order into database and returns
+// AddCategory insert a new Category into database and returns
 // last inserted Id on success.
-func AddOrder(m *Order) (id int64, err error) {
+func AddCategory(m *Category) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetOrderById retrieves Order by Id. Returns error if
+// GetCategoryById retrieves Category by Id. Returns error if
 // Id doesn't exist
-func GetOrderById(id int64) (v *Order, err error) {
+func GetCategoryById(id int64) (v *Category, err error) {
 	o := orm.NewOrm()
-	v = &Order{Id: id}
+	v = &Category{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllOrder retrieves all Order matches certain condition. Returns empty list if
+// GetAllCategory retrieves all Category matches certain condition. Returns empty list if
 // no records exist
-func GetAllOrder(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllCategory(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Order))
+	qs := o.QueryTable(new(Category))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -98,7 +92,7 @@ func GetAllOrder(query map[string]string, fields []string, sortby []string, orde
 		}
 	}
 
-	var l []Order
+	var l []Category
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -121,11 +115,11 @@ func GetAllOrder(query map[string]string, fields []string, sortby []string, orde
 	return nil, err
 }
 
-// UpdateOrder updates Order by Id and returns error if
+// UpdateCategory updates Category by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateOrderById(m *Order) (err error) {
+func UpdateCategoryById(m *Category) (err error) {
 	o := orm.NewOrm()
-	v := Order{Id: m.Id}
+	v := Category{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -136,15 +130,15 @@ func UpdateOrderById(m *Order) (err error) {
 	return
 }
 
-// DeleteOrder deletes Order by Id and returns error if
+// DeleteCategory deletes Category by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteOrder(id int64) (err error) {
+func DeleteCategory(id int64) (err error) {
 	o := orm.NewOrm()
-	v := Order{Id: id}
+	v := Category{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Order{Id: id}); err == nil {
+		if num, err = o.Delete(&Category{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
